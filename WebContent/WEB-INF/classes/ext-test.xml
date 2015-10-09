@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestConfig package="com.youcan.resources" final="false">
+	<msg>
+		<newsadd>恭喜您，新闻添加成功!</newsadd>    <!-- 新闻添加信息 -->
+		<newsedit>恭喜您，新闻编辑成功!</newsedit>  <!-- 新闻编辑信息 -->
+		<liveadd>恭喜您，直播添加成功!</liveadd>    <!-- 直播添加信息 -->
+		<liveedit>恭喜您，操作成功!</liveedit>  <!-- 直播编辑信息 -->
+		<seriesadd>恭喜您，串联添加成功!</seriesadd>     <!-- 串联添加信息 -->
+		<seriesedit>恭喜您，操作成功!</seriesedit>   <!-- 串联编辑信息 -->
+		<privatekeep>个人收藏失败，系统忙!</privatekeep>     <!-- 个人收藏失败信息 -->
+		<publickeep>公共收藏失败，系统忙!</publickeep>   <!-- 公共收藏失败信息 -->
+		<keepsuccess>恭喜您，收藏成功!</keepsuccess>   <!-- 收藏成功信息 -->
+		<newstitle>report</newstitle>   <!-- 报题导出标题 -->
+		<playtitle>play</playtitle>   <!-- 播出导出标题 -->
+		<crosstitle>cross</crosstitle>   <!-- 划题导出标题 -->
+		<detailstat>infostat</detailstat>   <!-- 导出标题 -->
+		<countstat>datastat</countstat>   <!-- 导出标题 -->
+	</msg>
+	<act>
+		<newsadd>1</newsadd>    <!-- 新闻添加操作 -->
+		<newsedit>2</newsedit>  <!-- 新闻编辑操作 -->
+		<liveadd>3</liveadd>    <!-- 直播添加操作 -->
+		<liveedit>4</liveedit>  <!-- 直播编辑操作 -->
+		<seriesadd>5</seriesadd>     <!-- 串联添加操作 -->
+		<seriesedit>6</seriesedit>   <!-- 串联编辑操作 -->
+		<videokeep>7</videokeep>     <!-- 新闻收藏操作 -->
+	</act>
+	<node>aaa</node>
+	<ddd/>
+</TestConfig>

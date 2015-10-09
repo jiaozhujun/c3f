@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MediaConfig package="com.youcan.commons.media" final="false">
+	<!-- 用于获取媒体文件信息 -->
+	<supportPath>C:/webserver/xingbookSupport</supportPath>
+	<smiEngine>
+		<cmd>${supportPath}/mi/MediaInfo.exe</cmd>
+	</smiEngine>
+	<!-- 用于处理图片文件 -->
+	<sifEngine>
+		<cmd>${supportPath}/im-static/convert.exe</cmd>
+		<!--
+		关于size的说明： 
+		width:转换后的宽度等于width，高度自动，保持比例
+		xheight:转换后的高度等于height，宽度自动，保持比例
+		widthxheight：转换后的宽高最大不超过width和height，保持比例
+		widthxheight^：转换后的宽高最小的与width或height相等，保持比例
+		widthxheight!：转化后的宽高与width、height相等，可能会变形
+		widthxheight>：如果源图片的宽高大于width、height，则缩小，保持比例
+		widthxheight<：如果源图片的宽高小于width、height，则放大，保持比例
+		 -->
+		<defaultSize>160x160&gt;</defaultSize>
+		<defaultOptions></defaultOptions>
+	</sifEngine>
+	<!-- 用于处理音视频文件 -->
+	<svfEngine>
+		<cmd>${supportPath}/ff/ffmpeg.exe</cmd>
+	</svfEngine>
+	<VideoConvert>
+		<defaultWidth>400</defaultWidth>
+		<!-- 0表示自适应 -->
+		<defaultHeight>0</defaultHeight>
+		<defaultBitRate>200000</defaultBitRate>
+	</VideoConvert>
+	<AudioConvert>
+		<BitRate>96k</BitRate><!-- 码流率 -->
+		<SampleRate>48000</SampleRate><!-- 采样率 -->
+	</AudioConvert>
+	<PDF2Images>
+		<cmd>${supportPath}/xpdf/pdfimages.exe</cmd>
+	</PDF2Images>
+</MediaConfig>

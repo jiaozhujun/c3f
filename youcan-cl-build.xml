@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="c3framework" basedir="." default="build-R-file">
+	<property environment="env" />
+	<property name="project.root" value="${basedir}" />
+	<property file="build.properties" />
+	<target name="init">
+		<property name="app.name" value="C3-Framework" />
+		<property name="app.vendor" value="Youcan" />
+		<property name="jdk.libpath" value="${java.home}/lib/rt.jar" />
+		<property name="libpath" value="${project.root}/WebContent/WEB-INF/lib" />
+		<fail message="File ${project.root}/config-file/resources.xml not exist.">
+			<condition>
+				<not>
+					<available file="${project.root}/config-file/resources.xml" />
+				</not>
+			</condition>
+		</fail>
+		<path id="project.class.path">
+			<pathelement path="${classpath}"/>
+			<fileset dir="${libpath}">
+				<include name="**/*.jar"/>
+			</fileset>
+		</path>
+	</target>
+	<target name="build-cl-file" depends="init">
+		<java classname="com.youcan.core.ConfigLoader">
+			<arg value="l"/>
+			<classpath refid="project.class.path"/>
+		</java>
+	</target>
+	<target name="load-cl-file" depends="init">
+		<java classname="com.youcan.core.ConfigLoader">
+			<arg value="f"/>
+			<classpath refid="project.class.path"/>
+		</java>
+	</target>
+	<target name="build-R-file" depends="init">
+		<java classname="com.youcan.core.ConfigLoader">
+			<arg value="r"/>
+			<classpath refid="project.class.path"/>
+		</java>
+	</target>
+	<target name="build-dcps-services" depends="init">
+		<java classname="com.youcan.commons.dcpsClient.ServicesUtil">
+			<classpath refid="project.class.path"/>
+		</java>
+	</target>
+</project>

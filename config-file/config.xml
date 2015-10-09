@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<!-- 数据库的配置，具体的配置参看db-xxxx.xml文件 -->
+	<db>dbcp</db>
+	<!-- Tomcat启动的时候自动加载的类 -->
+	<startup>
+		cn.openread.service.OpenreadStartup;
+	</startup>
+	<!-- Web服务相关信息 -->
+	<serverInfo>
+		<!-- 对应全局变量g.siteUrl -->
+		<siteUrl>http://nms.zzz.com:8080</siteUrl>
+		<!-- 对应全局变量g.siteName -->
+		<siteName>nms平台</siteName>
+		<!-- 文件上传临时目录 -->
+		<uploadTemp>temp/</uploadTemp>
+		<!-- 文件上传字节数上限，104857600为100MB -->
+		<uploadSizeMax>104857600</uploadSizeMax>
+		<!-- SESSION过期时间，单位毫秒 -->
+		<sessionExpiredTime>1800000</sessionExpiredTime>
+		<!-- 保存到cookie中的sessionId名称 -->
+		<sessionIdName>sid</sessionIdName>
+	</serverInfo>
+	<!-- 全局参数变量，可通过g.var(name)取值 -->
+	<globalVars>
+		<!-- 以下几个cookie相关参数暂时还未使用 -->
+		<var name="cookie.user.name" value="youcan.un" />
+		<var name="cookie.user.key" value="youcan.uk" />
+		<var name="cookie.maxage" value="2592000" />
+		<var name="cookie.path" value="/" />
+		<var name="cookie.domain" value="localhost" />
+		<var name="cookie.privatekey" value="youcan+cctv" />
+	</globalVars>
+	<crontab>
+		<!--
+		stop(当任务错误时，是否终止系统运行，缺省false):
+		  true, 当任务错误时，终止系统运行
+		  false, 当任务错误时，忽略该任务，不终止系统运行
+		repeat(是否按周期执行，缺省true):
+		  true, 按周期执行任务
+		  false, 执行一次任务即结束
+		daemon(是否作为守护程序运行，缺省false):
+		  true, 作为守护程序运行
+		  false, 不作为守护程序运行
+		fixed(是否固定速率执行，缺省true):
+		  true, 按固定速率执行
+		  false, 按固定延迟执行
+		delay(延迟，缺省0):
+		  0, 立即开始
+		  n, n秒后开始
+		  from HH:mm:SS, 从HH:mm:SS开始，如果from值小于当前时间，则设置为24小时后的from
+		  from HH:mm:SS gap n, 从HH:mm:SS开始，但设置n秒的间隙值，如果from值小于当前时间，或者大于当前时间的值不超过gap，则设置为24小时后的from
+		period(间隔，缺省every 1 d):
+		  every n d, 每隔n天执行一次
+		  every n h, 每隔n小时执行一次
+		  every n m, 每隔n分钟执行一次
+		  every n s, 每隔n秒执行一次
+		<task name="testTask1" stop="true" repeat="true" daemon="false" fixed="false" delay="from 14:36:30 gap 60" period="every 1 s">com.youcan.test.MyTimerTask1</task>
+		<task name="testTask2" stop="true" repeat="true" daemon="false" fixed="true" delay="3" period="every 30 s">com.youcan.test.MyTimerTask2</task>
+		 -->
+		<task name="SessionClearTask" stop="true" repeat="true" daemon="false" fixed="true" delay="1800" period="every 30 m">com.youcan.core.SessionManager</task>
+	</crontab>
+	<depend>
+		<dir-needs>
+			<!--
+			relative,是否是相对路径，相对于网站根目录，true/false
+			level,当不存在目录时的处理级别
+				  info: 记录日志 l.info(info)
+				 error: 记录日志 l.error(info)
+				 fatal: 系统终止，并记录日志 l.fatal(info)
+				create: 自动创建
+				 clean: 如果不存在，则创建目录，如果存在，则清空目录下的内容
+			nfs,是否为网络路径，true/false
+			 -->
+			<dir relative="true" level="create" nfs="false" info="静态文件保存路径">/_s</dir>
+			<dir relative="true" level="create" nfs="false" info="静态文件保存路径">/_s/commons</dir>
+			<dir relative="true" level="create" nfs="false" info="图片文件保存路径">/upload/images</dir>
+			<dir relative="true" level="create" nfs="false" info="文件上传临时路径">/temp</dir>
+		</dir-needs>
+	</depend>
+</config>

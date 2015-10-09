@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="C3Framework" basedir="." default="dist-base">
+	<property environment="env" />
+	<property name="project.root" value="${basedir}" />
+	<property file="build.properties" />
+	<target name="init">
+		<property name="app.name" value="C3Framework" />
+		<property name="app.vendor" value="Youcan" />
+		<property name="core.version" value="1.3.2" />
+		<property name="core.project" value="youcan-c3-core" />
+		<property name="base.version" value="1.3.2" />
+		<property name="base.project" value="youcan-c3-base" />
+		<property name="dcpsClient.version" value="1.3.2" />
+		<property name="dcpsClient.project" value="youcan-c3-commons-dcpsClient" />
+		<property name="media.version" value="1.3.2" />
+		<property name="media.project" value="youcan-c3-commons-media" />
+		<property name="jdk.libpath" value="${java.home}/lib/rt.jar" />
+		<property name="libpath" value="${project.root}/WebContent/WEB-INF/lib" />
+		<!-- <property name="server.libpath" value="${env.CATALINA_HOME}/lib" /> -->
+		<property name="server.libpath" value="/usr/local/tomcat/lib" />
+		<fail message="目录${server.libpath}不存在，请检查是否设置了环境变量CATALINA_HOME">
+			<condition>
+				<not>
+					<available file="${server.libpath}" />
+				</not>
+			</condition>
+		</fail>
+		<path id="project.class.path">
+			<pathelement path="${classpath};${servlet.class.path}" />
+			<fileset dir="${libpath}">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${server.libpath}">
+				<include name="**/*.jar" />
+			</fileset>
+		</path>
+	</target>
+
+	<!--c3 core-->
+	<target name="clean-core" depends="init">
+		<mkdir dir="dist" />
+		<delete includeEmptyDirs="true">
+			<fileset dir="dist">
+				<include name="${core.project}.*.jar" />
+			</fileset>
+		</delete>
+		<delete dir="temp" />
+	</target>
+	<target name="compile-core" depends="clean-core">
+		<mkdir dir="temp/classes" />
+		<javac srcdir="src-core/com/youcan/core" destdir="temp/classes" target="1.7" encoding="UTF-8" includeantruntime="false">
+			<classpath refid="project.class.path" />
+			<exclude name="**/.svn/**" />
+			<exclude name="com/youcan/test/**" />
+			<compilerarg value="-Xlint:unchecked" />
+		</javac>
+	</target>
+	<target name="dist-core" depends="compile-core">
+		<jar jarfile="dist/${core.project}.${core.version}.jar" basedir="temp/classes" />
+	</target>
+
+	<!--c3 base-->
+	<target name="clean-base" depends="init">
+		<mkdir dir="dist" />
+		<delete includeEmptyDirs="true">
+			<fileset dir="dist">
+				<include name="${base.project}.*.jar" />
+			</fileset>
+		</delete>
+		<delete dir="temp" />
+	</target>
+	<target name="compile-base" depends="clean-base">
+		<mkdir dir="temp/classes" />
+		<javac srcdir="src-base/com/youcan/base" destdir="temp/classes" target="1.7" encoding="UTF-8" includeantruntime="false">
+			<classpath>
+				<path refid="project.class.path" />
+				<pathelement path="dist/${core.project}.${core.version}.jar" />
+			</classpath>
+			<exclude name="**/.svn/**" />
+			<exclude name="com/youcan/test/**" />
+			<compilerarg value="-Xlint:unchecked" />
+		</javac>
+	</target>
+	<target name="dist-base" depends="compile-base">
+		<jar jarfile="dist/${base.project}.${base.version}.jar" basedir="temp/classes" />
+	</target>
+
+	<!--c3 dcpsClient-->
+	<target name="clean-dcpsClient" depends="init">
+		<mkdir dir="dist" />
+		<delete includeEmptyDirs="true">
+			<fileset dir="dist">
+				<include name="${dcpsClient.project}.*.jar" />
+			</fileset>
+		</delete>
+		<delete dir="temp" />
+	</target>
+	<target name="compile-dcpsClient" depends="clean-dcpsClient">
+		<mkdir dir="temp/classes" />
+		<javac srcdir="src-commons/com/youcan/commons/dcpsClient;gen/com/youcan/commons/dcpsClient" destdir="temp/classes" target="1.7" encoding="UTF-8" includeantruntime="false">
+			<classpath>
+				<path refid="project.class.path" />
+				<pathelement path="dist/${core.project}.${core.version}.jar" />
+			</classpath>
+			<exclude name="**/services/**" />
+			<exclude name="**/.svn/**" />
+			<exclude name="com/youcan/test/**" />
+			<compilerarg value="-Xlint:unchecked" />
+		</javac>
+	</target>
+	<target name="dist-dcpsClient" depends="compile-dcpsClient">
+		<jar jarfile="dist/${dcpsClient.project}.${dcpsClient.version}.jar" basedir="temp/classes" />
+	</target>
+
+	<!--c3 media-->
+	<target name="clean-media" depends="init">
+		<mkdir dir="dist" />
+		<delete includeEmptyDirs="true">
+			<fileset dir="dist">
+				<include name="${media.project}.*.jar" />
+			</fileset>
+		</delete>
+		<delete dir="temp" />
+	</target>
+	<target name="compile-media" depends="clean-media">
+		<mkdir dir="temp/classes" />
+		<javac srcdir="src-commons/com/youcan/commons/media;gen/com/youcan/commons/media" destdir="temp/classes" target="1.7" encoding="UTF-8" includeantruntime="false">
+			<classpath>
+				<path refid="project.class.path" />
+				<pathelement path="dist/${core.project}.${core.version}.jar" />
+			</classpath>
+			<exclude name="**/.svn/**" />
+			<exclude name="com/youcan/test/**" />
+			<compilerarg value="-Xlint:unchecked" />
+		</javac>
+	</target>
+	<target name="dist-media" depends="compile-media">
+		<jar jarfile="dist/${media.project}.${media.version}.jar" basedir="temp/classes" />
+	</target>
+</project>

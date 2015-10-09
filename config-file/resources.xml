@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<R>
+	<hello>hello c3!</hello>
+	<appName>c3 framework我啊</appName>
+	<myInt>100</myInt>
+	<myLong>1000000L</myLong>
+	<myBoolean>true</myBoolean>
+</R>

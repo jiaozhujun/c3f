@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DbConfigure>
+	<proxool>
+		<alias>nmsDbp</alias>
+		<driver-url>jdbc:mysql://localhost:6033/nms</driver-url>
+		<driver-class>com.mysql.jdbc.Driver</driver-class>
+		<driver-properties>
+			<property name="user" value="root" />
+			<property name="password" value="youcancc" />
+			<property name="autoReconnect" value="true" />
+			<property name="autoReconnectForPools" value="true" />
+			<property name="failOverReadOnly" value="false" />
+			<property name="maxReconnects" value="5" />
+			<property name="cachePrepStmts" value="true" />
+		</driver-properties>
+		<maximum-connection-count>150</maximum-connection-count>
+		<minimum-connection-count>5</minimum-connection-count>
+		<house-keeping-sleep-time>90000</house-keeping-sleep-time>
+		<maximum-new-connections>10</maximum-new-connections>
+        <prototype-count>5</prototype-count>   
+        <test-before-use>true</test-before-use>
+		<house-keeping-test-sql>select CURRENT_DATE</house-keeping-test-sql>
+	</proxool>
+</DbConfigure>

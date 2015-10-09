@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.err" />
+		<param name="Threshold" value="ALL" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p %x:%m%n" />
+		</layout>
+	</appender>
+
+	<appender name="R" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${webapp.root}/WEB-INF/logs/openread.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p:[%d{ISO8601}] %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="com.opensymphony">
+    	<level value="DEBUG" />
+    </logger>
+
+    <logger name="org.apache.struts2">
+    	 <level value="DEBUG" />
+    </logger>
+
+	<logger name="rootLog">
+		<level value="DEBUG"/>
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="R" />
+	</logger>
+
+	<root>
+		<level value="INFO" />
+	</root>
+</log4j:configuration> 

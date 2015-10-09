@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DcpsClientConfig package="com.youcan.commons.dcpsClient" final="false">
+	<dcpsAddress>localhost</dcpsAddress>
+	<dcpsPort>8099</dcpsPort>
+	<clientId>orMZONE</clientId>
+	<others>
+		<service id="orImages1">
+			<template>OR_IMAGES_1</template>
+			<transactionId>auto</transactionId>
+			<callBack>15000</callBack><!-- -1表示立即返回，不需要阻塞，0表示超时时间不限，>0表示超时时间，单位毫秒 -->
+			<debug>false</debug>
+			<priority>10</priority>
+			<params>
+				<param type="long">pid</param>
+				<param type="String">fileId</param>
+				<param type="String">fileExt</param>
+			</params>
+		</service>
+		<service id="orImages2">
+			<template>OR_IMAGES_2</template>
+			<transactionId>auto</transactionId>
+			<callBack>15000</callBack>
+			<debug>false</debug>
+			<priority>10</priority>
+			<params>
+				<param type="long">pid</param>
+				<param type="String">fileId</param>
+				<param type="String">fileExt</param>
+			</params>
+		</service>
+		<service id="orImages3">
+			<template>OR_IMAGES_3</template>
+			<transactionId>auto</transactionId>
+			<callBack>15000</callBack>
+			<debug>false</debug>
+			<priority>10</priority>
+			<params>
+				<param type="long">pid</param>
+				<param type="String">fileId</param>
+				<param type="String">fileExt</param>
+			</params>
+		</service>
+		<service id="orImages4">
+			<template>OR_IMAGES_4</template>
+			<transactionId>auto</transactionId>
+			<callBack>15000</callBack>
+			<debug>false</debug>
+			<priority>10</priority>
+			<params>
+				<param type="long">pid</param>
+				<param type="String">fileId</param>
+				<param type="String">fileExt</param>
+			</params>
+		</service>
+	</others>
+</DcpsClientConfig>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DbConfigure>
+	<jdbc>
+		<driverClassName>com.mysql.jdbc.Driver</driverClassName>
+		<url>jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8</url>
+		<username>root</username>
+		<password>root</password>
+	</jdbc>
+	<dataSource>
+		<!-- 初始化连接 -->
+		<initialSize>10</initialSize>
+		<!-- 最大空闲连接 -->
+		<maxIdle>20</maxIdle>
+		<!-- 最小空闲连接 -->
+		<minIdle>5</minIdle>
+		<!-- 最大连接数量 -->
+		<maxActive>50</maxActive>
+		<!-- 超时等待时间，单位为毫秒 -->
+		<maxWait>5000</maxWait>
+		<!-- 是否在自动回收超时连接时，打印连接的超时错误 -->
+		<logAbandoned>true</logAbandoned>
+		<!-- 是否自动回收超时连接 -->
+		<removeAbandoned>true</removeAbandoned>
+		<!-- 超时时间，单位为秒 -->
+		<removeAbandonedTimeOut>10</removeAbandonedTimeOut>
+		<!-- 空闲连接验证，单位为毫秒 -->
+		<minEvictableIdleTimeMillis>30000</minEvictableIdleTimeMillis>
+		<!-- 取得对象时是否进行验证 -->
+		<testOnBorrow>true</testOnBorrow>
+		<!-- 验证语句 -->
+		<validationQuery>SELECT 1</validationQuery>
+		<!-- 验证时间间隔，单位为毫秒 -->
+		<validationInterval>30000</validationInterval>
+	</dataSource>
+</DbConfigure>

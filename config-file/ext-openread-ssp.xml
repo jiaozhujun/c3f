@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SspConfig package="cn.openread.ssp" final="false">
+	<!-- 注册完成后的动作,R.Register.* -->
+	<afterRegister>1</afterRegister>
+	<uploadFilePath>upload/</uploadFilePath>
+	<uploadImagePath>upload/images</uploadImagePath>
+	<defaultPageSize>20</defaultPageSize>
+	<baseUrl>http://192.168.1.84:8080/sto/images</baseUrl><!-- 图片引用地址多处引用，谨慎修改 -->
+	<templateUrl>http://192.168.1.84:8080/sto/images/medium/120x120/</templateUrl><!--html 模板显示替换路径 -->
+<!-- 
+	<baseUrl>http://119.253.208.54/sto/images</baseUrl>
+	<templateUrl>http://119.253.208.54/sto/images/medium/120x120/</templateUrl> -->
+</SspConfig>
